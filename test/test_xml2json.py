@@ -49,14 +49,19 @@ class SimplisticTest(unittest.TestCase):
         final_string = xml2json.json2xml(json_string)
         self.assertTrue(xml_string == final_string)
 
-    def elem2json(self):
-        json_string = '{"e": { "@name": "value" }}'
-        elem = '<e name="value" />' 
-        fin_json = xml2json.json2elem(json_string)
-        self.assertTrue(xml_string == final_string)
+    def test_json2elem(self):
+        json_string = '{"e": { "@name": "value" }}' 
+        xml2json.json2elem(json_string)
+
+    def test_internal_to_elem(self):
+        e = {}
+        e['#text'] = {'#text':'#text', '#tail':'#tail', 'hz':'hz', 'mz':['a', 'b']}
+
+        xml2json.internal_to_elem(e)
+
     def test_main(self):
-        xml2json.main()
+        print 'CTRL + C'
+        os.system("python xml2json.py")
 
-
-if __name__ == '__main__':
-    unittest.main()
+#if __name__ == '__main__':
+ #   unittest.main()
